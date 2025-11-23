@@ -67,6 +67,31 @@
             }).format(value);
         }
 
+<script>
+    // --- TEMPORARY STAGING GATE ---
+    (function() {
+        const secretKey = "secret"; // The password you type in
+        let enteredKey = null;
+
+        while (enteredKey !== secretKey) {
+            enteredKey = prompt("⚠️ STAGING SITE: Please enter the temporary password to proceed:");
+            
+            // Check for cancel/close behavior
+            if (enteredKey === null) { 
+                alert("Access denied. Please reload and enter the password.");
+                // Prevent further execution by potentially redirecting or pausing
+                window.location.href = "about:blank"; // Takes user away from the site
+                return;
+            }
+        }
+    })();
+    // --- END STAGING GATE ---
+
+
+    // Function to format numbers as US Currency
+    function formatCurrency(value) {
+// ... rest of your existing JavaScript ...
+
         function calculateCoastFIRE() {
             // 1. GATHER INPUTS
             const annualSpending = parseFloat(document.getElementById('annualSpending').value);
