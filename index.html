@@ -73,14 +73,23 @@
         const secretKey = "secret"; // The password you type in
         let enteredKey = null;
 
-        while (enteredKey !== secretKey) {
+       while (enteredKey !== secretKey) {
             enteredKey = prompt("⚠️ STAGING SITE: Please enter the temporary password to proceed:");
             
-            // Check for cancel/close behavior
-            if (enteredKey === null) { 
-                alert("Access denied. Please reload and enter the password.");
-                // Prevent further execution by potentially redirecting or pausing
-                window.location.href = "about:blank"; // Takes user away from the site
+            // 1. Convert to string (if null, it becomes "null").
+            // 2. Convert to lowercase.
+            // 3. Remove whitespace from the beginning and end (trim()).
+            enteredKey = String(enteredKey).toLowerCase().trim();
+
+            // Check if the trimmed, lowercased key matches
+            if (enteredKey === secretKey) {
+                break; // Exit the loop successfully
+            }
+            
+            // Check for cancel/close or incorrect entry
+            if (enteredKey !== secretKey) { 
+                alert("Incorrect password. Please reload and try again.");
+                window.location.href = "about:blank"; // Takes user away
                 return;
             }
         }
