@@ -69,29 +69,36 @@
 
 
     <script>
-    // --- TEMPORARY STAGING GATE (Simplified) ---
+    // --- TEMPORARY STAGING GATE (Final Robust Version) ---
     (function() {
         const secretKey = "secret"; 
         
-        // 1. Get user input (prompt) and immediately clean it up.
+        // 1. Get user input.
         let enteredKey = prompt("⚠️ STAGING SITE: Please enter the temporary password to proceed:");
 
-        // 2. Clean up the user input to handle case and whitespace issues.
-        //    If prompt is cancelled (returns null), String(null) is "null".
-        let cleanedKey = String(enteredKey).toLowerCase().trim();
+        // 2. Process the input defensively: 
+        //    a. If prompt is cancelled, it returns null. We must check for this.
+        //    b. If prompt is empty, it returns "".
+        //    c. If valid, we clean it up.
+        let cleanedKey = "";
+        if (enteredKey !== null) {
+            cleanedKey = enteredKey.toLowerCase().trim();
+        }
 
-        // 3. Check if the key is CORRECT.
-        if (cleanedKey === secretKey) {
-            // Success: Do nothing and let the code continue.
-            return;
-        } else {
-            // Failure: Execute the error and redirect logic.
+        // 3. Test for FAILURE first. The script continues ONLY on success.
+        if (cleanedKey !== secretKey) {
             alert("🛑 Access Denied: Incorrect password. Please try again.");
             window.location.href = "about:blank"; 
-            return; // Stops all further script execution
+            return; // Stops all script execution on failure
         }
+        
+        // If the script reaches this point, the password was correct (cleanedKey === secretKey)
+        // and the rest of the calculator code runs.
     })();
     // --- END STAGING GATE ---
+
+    // Function to format numbers as US Currency
+    // ... rest of your existing JavaScript ...
 </script>
 
     // Function to format numbers as US Currency
