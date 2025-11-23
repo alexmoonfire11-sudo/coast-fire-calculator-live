@@ -45,18 +45,40 @@
             <p class="result-label">Coast FIRE Number (What you need TODAY):</p>
             <p id="coastFire" class="result-output secondary-result">$0</p>
             
-         <p id="affiliate-cta">
-    You have your Coast FI goal! Now, track all your accounts in one free, powerful dashboard to reach it faster.<br>
-    <div class="button-wrapper"> <a href="YOUR_EMPOWER_AFFILIATE_LINK" target="_blank" class="cta-button">
-            Track My Coast FIRE Goal for FREE
-        </a>
-    </div>
-</p>
-</p>
+            <p id="affiliate-cta">
+                You have your Coast FI goal! Now, track all your accounts in one free, powerful dashboard to reach it faster.<br>
+                <div class="button-wrapper"> 
+                    <a href="YOUR_EMPOWER_AFFILIATE_LINK" target="_blank" class="cta-button">
+                        Track My Coast FIRE Goal for FREE
+                    </a>
+                </div>
+            </p>
         </div>
     </div>
 
     <script>
+        // --- TEMPORARY STAGING GATE (Final Robust Version) ---
+        (function() {
+            const secretKey = "secret"; 
+            
+            // 1. Get user input.
+            let enteredKey = prompt("⚠️ STAGING SITE: Please enter the temporary password to proceed:");
+
+            // 2. Process the input defensively: 
+            let cleanedKey = "";
+            if (enteredKey !== null) {
+                cleanedKey = enteredKey.toLowerCase().trim();
+            }
+
+            // 3. Test for FAILURE first. The script continues ONLY on success.
+            if (cleanedKey !== secretKey) {
+                alert("🛑 Access Denied: Incorrect password. Please try again.");
+                window.location.href = "about:blank"; 
+                return; // Stops all script execution on failure
+            }
+        })();
+        // --- END STAGING GATE ---
+
         // Function to format numbers as US Currency
         function formatCurrency(value) {
             return new Intl.NumberFormat('en-US', {
@@ -67,44 +89,7 @@
             }).format(value);
         }
 
-
-    <script>
-    // --- TEMPORARY STAGING GATE (Final Robust Version) ---
-    (function() {
-        const secretKey = "secret"; 
-        
-        // 1. Get user input.
-        let enteredKey = prompt("⚠️ STAGING SITE: Please enter the temporary password to proceed:");
-
-        // 2. Process the input defensively: 
-        //    a. If prompt is cancelled, it returns null. We must check for this.
-        //    b. If prompt is empty, it returns "".
-        //    c. If valid, we clean it up.
-        let cleanedKey = "";
-        if (enteredKey !== null) {
-            cleanedKey = enteredKey.toLowerCase().trim();
-        }
-
-        // 3. Test for FAILURE first. The script continues ONLY on success.
-        if (cleanedKey !== secretKey) {
-            alert("🛑 Access Denied: Incorrect password. Please try again.");
-            window.location.href = "about:blank"; 
-            return; // Stops all script execution on failure
-        }
-        
-        // If the script reaches this point, the password was correct (cleanedKey === secretKey)
-        // and the rest of the calculator code runs.
-    })();
-    // --- END STAGING GATE ---
-
-    // Function to format numbers as US Currency
-    // ... rest of your existing JavaScript ...
-</script>
-
-    // Function to format numbers as US Currency
-    function formatCurrency(value) {
-// ... rest of your existing JavaScript ...
-
+        // Main Calculator Function
         function calculateCoastFIRE() {
             // 1. GATHER INPUTS
             const annualSpending = parseFloat(document.getElementById('annualSpending').value);
@@ -124,19 +109,4 @@
             const safeWithdrawalRate = 0.04; // 4% Rule
             const targetFIRE = annualSpending / safeWithdrawalRate;
             const realRate = growthRate - inflationRate;
-            const yearsToRetirement = retirementAge - currentAge;
-            
-            // Coast FIRE Formula: P = F / (1 + r_real)^t
-            const coastFIRE_P = targetFIRE / Math.pow(1 + realRate, yearsToRetirement);
-
-            // 4. UPDATE RESULTS
-            document.getElementById('targetFire').textContent = formatCurrency(targetFIRE);
-            document.getElementById('coastFire').textContent = formatCurrency(coastFIRE_P);
-        }
-
-        // Initialize the calculator on page load
-        window.onload = calculateCoastFIRE;
-    </script>
-
-</body>
-</html>
+            const yearsToRetirement = retirementAge - currentAge
