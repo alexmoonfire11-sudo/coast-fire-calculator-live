@@ -67,35 +67,32 @@
             }).format(value);
         }
 
-<script>
-    // --- TEMPORARY STAGING GATE ---
+
+    <script>
+    // --- TEMPORARY STAGING GATE (Simplified) ---
     (function() {
-        const secretKey = "secret"; // The password you type in
-        let enteredKey = null;
+        const secretKey = "secret"; 
+        
+        // 1. Get user input (prompt) and immediately clean it up.
+        let enteredKey = prompt("⚠️ STAGING SITE: Please enter the temporary password to proceed:");
 
-       while (enteredKey !== secretKey) {
-            enteredKey = prompt("⚠️ STAGING SITE: Please enter the temporary password to proceed:");
-            
-            // 1. Convert to string (if null, it becomes "null").
-            // 2. Convert to lowercase.
-            // 3. Remove whitespace from the beginning and end (trim()).
-            enteredKey = String(enteredKey).toLowerCase().trim();
+        // 2. Clean up the user input to handle case and whitespace issues.
+        //    If prompt is cancelled (returns null), String(null) is "null".
+        let cleanedKey = String(enteredKey).toLowerCase().trim();
 
-            // Check if the trimmed, lowercased key matches
-            if (enteredKey === secretKey) {
-                break; // Exit the loop successfully
-            }
-            
-            // Check for cancel/close or incorrect entry
-            if (enteredKey !== secretKey) { 
-                alert("Incorrect password. Please reload and try again.");
-                window.location.href = "about:blank"; // Takes user away
-                return;
-            }
+        // 3. Check if the key is CORRECT.
+        if (cleanedKey === secretKey) {
+            // Success: Do nothing and let the code continue.
+            return;
+        } else {
+            // Failure: Execute the error and redirect logic.
+            alert("🛑 Access Denied: Incorrect password. Please try again.");
+            window.location.href = "about:blank"; 
+            return; // Stops all further script execution
         }
     })();
     // --- END STAGING GATE ---
-
+</script>
 
     // Function to format numbers as US Currency
     function formatCurrency(value) {
