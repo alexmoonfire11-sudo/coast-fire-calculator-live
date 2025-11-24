@@ -14,6 +14,7 @@
 <body>
 
     <div id="coast-fire-calculator">
+        <div class="version-label">this is version 1.2</div>
         <h2>Your Path to Coast FI</h2>
 
         <div class="input-group">
@@ -65,28 +66,6 @@
     </div>
 
     <script>
-        // --- TEMPORARY STAGING GATE (Final Robust Version) ---
-        (function () {
-            const secretKey = "secret";
-
-            // 1. Get user input.
-            let enteredKey = prompt("⚠️ STAGING SITE: Please enter the temporary password to proceed:");
-
-            // 2. Process the input defensively: 
-            let cleanedKey = "";
-            if (enteredKey !== null) {
-                cleanedKey = enteredKey.toLowerCase().trim();
-            }
-
-            // 3. Test for FAILURE first. The script continues ONLY on success.
-            if (cleanedKey !== secretKey) {
-                alert("🛑 Access Denied: Incorrect password. Please try again.");
-                window.location.href = "about:blank";
-                return; // Stops all script execution on failure
-            }
-        })();
-        // --- END STAGING GATE ---
-
         // Function to format numbers as US Currency
         function formatCurrency(value) {
             return new Intl.NumberFormat('en-US', {

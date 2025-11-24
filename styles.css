@@ -1,11 +1,15 @@
 /* 1. GLOBAL VARIABLES & RESET */
 :root {
     /* Color Palette - Premium Fintech Theme */
-    --primary-color: #0f172a; /* Deep Navy */
-    --accent-color: #3b82f6; /* Vibrant Blue */
+    --primary-color: #0f172a;
+    /* Deep Navy */
+    --accent-color: #3b82f6;
+    /* Vibrant Blue */
     --accent-hover: #2563eb;
-    --success-color: #10b981; /* Emerald Green */
-    --bg-color: #f8fafc; /* Very light cool gray */
+    --success-color: #10b981;
+    /* Emerald Green */
+    --bg-color: #f8fafc;
+    /* Very light cool gray */
     --surface-color: #ffffff;
     --text-primary: #1e293b;
     --text-secondary: #64748b;
@@ -48,6 +52,14 @@ h2 {
     font-weight: 700;
     font-size: 1.75rem;
     letter-spacing: -0.025em;
+}
+
+.version-label {
+    color: var(--success-color);
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
 /* 3. INPUT FIELDS */
@@ -119,6 +131,7 @@ input[type="number"]:focus {
 .secondary-result {
     background: linear-gradient(135deg, var(--accent-color), var(--success-color));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -126,7 +139,8 @@ input[type="number"]:focus {
 #affiliate-cta {
     margin-top: 32px;
     padding: 24px;
-    background-color: #eff6ff; /* Light blue tint */
+    background-color: #eff6ff;
+    /* Light blue tint */
     border: 1px solid #dbeafe;
     border-radius: var(--radius-md);
     color: var(--primary-color);
@@ -170,7 +184,7 @@ input[type="number"]:focus {
         padding: 0;
         align-items: flex-start;
     }
-    
+
     #coast-fire-calculator {
         border-radius: 0;
         box-shadow: none;
