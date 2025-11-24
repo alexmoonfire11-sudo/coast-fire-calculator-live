@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coast FIRE Calculator (MVP)</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
     <div id="coast-fire-calculator">
         <h2>Your Path to Coast FI</h2>
-        
+
         <div class="input-group">
             <label for="annualSpending">Estimated Annual Retirement Spending ($)</label>
-            <input type="number" id="annualSpending" value="50000" min="1000" step="1000" oninput="calculateCoastFIRE()">
+            <input type="number" id="annualSpending" value="50000" min="1000" step="1000"
+                oninput="calculateCoastFIRE()">
         </div>
 
         <div class="input-group">
@@ -30,37 +36,39 @@
             <label for="growthRate">Expected Annual Growth Rate (%)</label>
             <input type="number" id="growthRate" value="7" min="1" max="15" step="0.1" oninput="calculateCoastFIRE()">
         </div>
-        
+
         <div class="input-group">
             <label for="inflationRate">Expected Annual Inflation Rate (%)</label>
-            <input type="number" id="inflationRate" value="3" min="0" max="10" step="0.1" oninput="calculateCoastFIRE()">
+            <input type="number" id="inflationRate" value="3" min="0" max="10" step="0.1"
+                oninput="calculateCoastFIRE()">
         </div>
-        
+
         <div id="results">
             <h3>Your Coast FIRE Numbers:</h3>
-            
+
             <p class="result-label">Target FIRE Number (The Goal):</p>
             <p id="targetFire" class="result-output primary-result">$0</p>
-            
+
             <p class="result-label">Coast FIRE Number (What you need TODAY):</p>
             <p id="coastFire" class="result-output secondary-result">$0</p>
-            
+
             <p id="affiliate-cta">
-                You have your Coast FI goal! Now, track all your accounts in one free, powerful dashboard to reach it faster.<br>
-                <div class="button-wrapper"> 
-                    <a href="YOUR_EMPOWER_AFFILIATE_LINK" target="_blank" class="cta-button">
-                        Track My Coast FIRE Goal for FREE
-                    </a>
-                </div>
+                You have your Coast FI goal! Now, track all your accounts in one free, powerful dashboard to reach it
+                faster.<br>
+            <div class="button-wrapper">
+                <a href="YOUR_EMPOWER_AFFILIATE_LINK" target="_blank" class="cta-button">
+                    Track My Coast FIRE Goal for FREE
+                </a>
+            </div>
             </p>
         </div>
     </div>
 
     <script>
         // --- TEMPORARY STAGING GATE (Final Robust Version) ---
-        (function() {
-            const secretKey = "secret"; 
-            
+        (function () {
+            const secretKey = "secret";
+
             // 1. Get user input.
             let enteredKey = prompt("⚠️ STAGING SITE: Please enter the temporary password to proceed:");
 
@@ -73,7 +81,7 @@
             // 3. Test for FAILURE first. The script continues ONLY on success.
             if (cleanedKey !== secretKey) {
                 alert("🛑 Access Denied: Incorrect password. Please try again.");
-                window.location.href = "about:blank"; 
+                window.location.href = "about:blank";
                 return; // Stops all script execution on failure
             }
         })();
@@ -104,9 +112,21 @@
                 document.getElementById('coastFire').textContent = formatCurrency(0);
                 return;
             }
-            
+
             // 3. CORE CALCULATIONS
             const safeWithdrawalRate = 0.04; // 4% Rule
             const targetFIRE = annualSpending / safeWithdrawalRate;
             const realRate = growthRate - inflationRate;
-            const yearsToRetirement = retirementAge - currentAge
+            const yearsToRetirement = retirementAge - currentAge;
+
+            // Calculate Coast FIRE
+            const coastFire = targetFIRE / Math.pow(1 + realRate, yearsToRetirement);
+
+            // 4. DISPLAY RESULTS
+            document.getElementById('targetFire').textContent = formatCurrency(targetFIRE);
+            document.getElementById('coastFire').textContent = formatCurrency(coastFire);
+        }
+    </script>
+</body>
+
+</html>
